@@ -1,0 +1,61 @@
+type TextQuestion {
+    id: ID!
+    question: String!
+}
+
+type TextAnswer {
+    id: ID!
+    author: ID!
+    text: String!
+    textQuestion: TextQuestion
+}
+
+type ScalarQuestion {
+    id: ID!
+    question: String!
+}
+
+type ScalarAnswer {
+    id: ID!
+    author: ID!
+    scalar: Int!
+    scalarQuestion: ScalarQuestion
+}
+
+type ScalarAnswersStats {
+    scalarQuestion: ScalarQuestion
+    count: Int!
+    average: Int!
+}
+
+type ScalarAnswersStatsPerAnswer {
+    scalarQuestion: ScalarQuestion
+    answer: Int!
+    count: Int!
+}
+
+type WordStat {
+    textQuestion: TextQuestion
+    word: String!
+    count: Int!
+}
+
+type TextAnswersStats {
+    textQuestion: TextQuestion
+    count: Int!
+}
+
+type Query {
+    textAnswersStats: [TextAnswersStats!]
+    scalarAnswersStats: [ScalarAnswersStats!]
+    scalarAnswersStatsPerAnswer: [ScalarAnswersStatsPerAnswer!]
+    wordsStats: [WordStat!]
+}
+
+type Mutation {
+    addScalarQuestion(question: String!): ScalarQuestion!
+    addTextQuestion(question: String!): TextQuestion!
+    scalarAnswer(author: ID!, scalarQuestion: ID!, scalar: Int!): ScalarAnswer!
+    textAnswer(author: ID!, textQuestion: ID!, text: String!): TextAnswer!
+}
+

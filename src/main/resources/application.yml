@@ -1,0 +1,34 @@
+micronaut:
+  application:
+    name: pollerApi
+  server:
+    http-version: 2.0
+    ssl:
+      buildSelfSigned: true
+      enabled: true
+  http:
+    client:
+      ssl:
+        insecure-trust-all-certificates: true
+      http-version: 2.0
+netty:
+  default:
+    allocator:
+      max-order: 3
+graphql:
+  enabled: true
+  graphiql: # enables the /graphiql endpoint to test calls against your graph.
+    enabled: true
+
+datasources:
+  default:
+    url: jdbc:mysql://127.0.0.1:3306/poll
+    username: poll-admin
+    password: poll-admin123
+    driverClassName: com.mysql.cj.jdbc.Driver
+    minPoolSize: 32
+    maxPoolSize: 64
+flyway:
+  datasources:
+    default:
+      enabled: true
